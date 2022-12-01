@@ -6,18 +6,18 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Box from '@mui/material/Box';
-
-function createData(name: string, highLimit: number, active: boolean) {
-  return { name, highLimit, active };
-}
-
-const rows = [
-  createData('Kitchen', 50, true),
-  createData('Living room', 40, true),
-  createData('Stairs', 46, true),
-];
+import { useGetSwitchesQuery } from '../features/switches/switchesAPI';
 
 export default function SwitchTable() {
+  const { data, isLoading, isError } = useGetSwitchesQuery();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError || !data) {
+    return <div>Something went wrong</div>;
+  }
   return (
     <TableContainer component={Box}>
       <Table>
@@ -29,7 +29,7 @@ export default function SwitchTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {data.map((row) => (
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -38,7 +38,9 @@ export default function SwitchTable() {
                 {row.name}
               </TableCell>
               <TableCell align="right">{row.highLimit}</TableCell>
-              <TableCell align="right">{row.active}</TableCell>
+              <TableCell align="right">
+                {row.isActive ? 'true' : 'false'}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

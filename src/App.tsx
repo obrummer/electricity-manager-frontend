@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
   const theme = createTheme();
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
