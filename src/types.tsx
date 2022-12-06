@@ -7,3 +7,5 @@ export interface SwitchPoint {
   updatedAt: string;
   __v: number;
 }
+
+export type DialogMode = 'create' | 'edit';

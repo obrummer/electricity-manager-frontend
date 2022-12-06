@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -41,7 +41,7 @@ function Dashboard() {
         <Toolbar />
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={7} lg={8}>
+            <Grid item xs={12} md={6} lg={6}>
               <Paper
                 sx={{
                   p: 2,
@@ -53,7 +53,7 @@ function Dashboard() {
                 <DayPriceChart />
               </Paper>
             </Grid>
-            <Grid item xs={12} md={5} lg={4}>
+            <Grid item xs={12} md={6} lg={6}>
               <Paper
                 sx={{
                   p: 2,
