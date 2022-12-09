@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Copyright from './Copyright';
 import DayPriceChart from './DayPriceChart';
-import SwitchTable from './SwitchTable';
+import SwitchContainer from '../containers/SwitchContainer';
 
 function Dashboard() {
   return (
@@ -62,7 +62,7 @@ function Dashboard() {
                 }}
               >
                 Switches
-                <SwitchTable />
+                <SwitchContainer />
               </Paper>
             </Grid>
           </Grid>

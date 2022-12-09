@@ -1,13 +1,13 @@
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import { MenuItem } from '@mui/material';
 import { DialogMode } from '../types';
 
-interface CreateSwitchDialogProps {
+interface SwitchDialogProps {
   handleClose: () => void;
   open: boolean;
   switchName: string;
@@ -19,7 +19,7 @@ interface CreateSwitchDialogProps {
   editSwitch: () => void;
 }
 
-function CreateSwitchDialog({
+function SwitchDialog({
   handleClose,
   open,
   switchName,
@@ -29,28 +29,51 @@ function CreateSwitchDialog({
   createSwitch,
   dialogMode,
   editSwitch,
-}: CreateSwitchDialogProps) {
-  const getMode = () => (dialogMode === 'create' ? 'Create' : 'Edit');
+}: SwitchDialogProps) {
+  const numbers = [
+    {
+      value: 0,
+    },
+    {
+      value: 10,
+    },
+    {
+      value: 20,
+    },
+    {
+      value: 50,
+    },
+  ];
+  const getMode = () => (dialogMode === DialogMode.create ? 'Create' : 'Edit');
   return (
     <div>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose} data-testid="switch-dialog">
         <DialogTitle>{getMode()} switch</DialogTitle>
         <DialogContent>
           <TextField
             sx={{ m: 1 }}
             label="Name"
+            name="switchName"
             value={switchName}
             onChange={(e: { target: { value: string } }) =>
               setSwitchName(e.target.value)
             }
           />
           <TextField
-            sx={{ m: 1 }}
+            sx={{ m: 1, minWidth: 200 }}
             label="High Limit"
             type="number"
             value={highLimit}
+            select
             onChange={(e) => setHighLimit(Number(e.target.value))}
-          />
+            inputProps={{ type: 'number' }}
+          >
+            {numbers.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.value}
+              </MenuItem>
+            ))}
+          </TextField>
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={handleClose}>
@@ -58,7 +81,9 @@ function CreateSwitchDialog({
           </Button>
           <Button
             variant="outlined"
-            onClick={dialogMode === 'create' ? createSwitch : editSwitch}
+            onClick={
+              dialogMode === DialogMode.create ? createSwitch : editSwitch
+            }
           >
             {getMode()}
           </Button>
@@ -68,4 +93,4 @@ function CreateSwitchDialog({
   );
 }
 
-export default CreateSwitchDialog;
+export default SwitchDialog;

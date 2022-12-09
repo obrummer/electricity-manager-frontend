@@ -8,4 +8,7 @@ export interface SwitchPoint {
   __v: number;
 }
 
-export type DialogMode = 'create' | 'edit';
+export enum DialogMode {
+  create = 'create',
+  edit = 'edit',
+}
