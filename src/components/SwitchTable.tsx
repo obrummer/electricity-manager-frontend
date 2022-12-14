@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Tooltip from '@mui/material/Tooltip';
+import Chip from '@mui/material/Chip';
 import { SwitchPoint } from '../types';
 
 interface SwitchTableProps {
@@ -41,9 +42,13 @@ function SwitchTable({ data, stageEdit, stageDelete }: SwitchTableProps) {
               </TableCell>
               <TableCell align="right">{row.highLimit}</TableCell>
               <TableCell align="right">
-                {row.isActive ? 'true' : 'false'}
+                {row.isActive ? (
+                  <Chip label="ON" color="success" size="small" />
+                ) : (
+                  <Chip label="OFF" color="error" size="small" />
+                )}
               </TableCell>
-              <TableCell sx={{ maxWidth: 20 }}>
+              <TableCell sx={{ maxWidth: 10 }}>
                 <Tooltip title="Edit" placement="top">
                   <IconButton
                     aria-label="edit"
@@ -53,7 +58,7 @@ function SwitchTable({ data, stageEdit, stageDelete }: SwitchTableProps) {
                   </IconButton>
                 </Tooltip>
               </TableCell>
-              <TableCell sx={{ maxWidth: 20 }}>
+              <TableCell sx={{ maxWidth: 10 }}>
                 <Tooltip title="Delete" placement="top">
                   <IconButton
                     aria-label="delete"

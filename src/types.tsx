@@ -12,3 +12,9 @@ export enum DialogMode {
   create = 'create',
   edit = 'edit',
 }
+export interface Price {
+  price: number;
+  time: string;
+  priceWithTax: number;
+  date: string;
+}

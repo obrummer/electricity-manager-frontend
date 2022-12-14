@@ -7,8 +7,8 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Copyright from './Copyright';
-import DayPriceChart from './DayPriceChart';
 import SwitchContainer from '../containers/SwitchContainer';
+import PriceChartContainer from '../containers/PriceChartContainer';
 
 function Dashboard() {
   return (
@@ -50,7 +50,7 @@ function Dashboard() {
                 }}
               >
                 Chart
-                <DayPriceChart />
+                <PriceChartContainer />
               </Paper>
             </Grid>
             <Grid item xs={12} md={6} lg={6}>

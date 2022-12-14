@@ -30,20 +30,9 @@ function SwitchDialog({
   dialogMode,
   editSwitch,
 }: SwitchDialogProps) {
-  const numbers = [
-    {
-      value: 0,
-    },
-    {
-      value: 10,
-    },
-    {
-      value: 20,
-    },
-    {
-      value: 50,
-    },
-  ];
+  const highLimitValues = Array.from(Array(101).keys()).map((i) => ({
+    value: i,
+  }));
   const getMode = () => (dialogMode === DialogMode.create ? 'Create' : 'Edit');
   return (
     <div>
@@ -54,6 +43,7 @@ function SwitchDialog({
             sx={{ m: 1 }}
             label="Name"
             name="switchName"
+            required
             value={switchName}
             onChange={(e: { target: { value: string } }) =>
               setSwitchName(e.target.value)
@@ -68,7 +58,7 @@ function SwitchDialog({
             onChange={(e) => setHighLimit(Number(e.target.value))}
             inputProps={{ type: 'number' }}
           >
-            {numbers.map((option) => (
+            {highLimitValues.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.value}
               </MenuItem>
