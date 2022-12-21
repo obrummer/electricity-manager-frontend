@@ -49,7 +49,7 @@ function Dashboard() {
                   flexDirection: 'column',
                 }}
               >
-                Chart
+                Electricity price
                 <PriceChartContainer />
               </Paper>
             </Grid>
