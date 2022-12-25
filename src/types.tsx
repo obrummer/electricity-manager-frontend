@@ -18,3 +18,11 @@ export interface Price {
   priceWithTax: number;
   date: string;
 }
+
+export interface Indicators {
+  averagePriceToday: number;
+  priceDifferencePercentage: number;
+  todayHighestPrice: number;
+  todayLowestPrice: number;
+  currentPrice: number;
+}

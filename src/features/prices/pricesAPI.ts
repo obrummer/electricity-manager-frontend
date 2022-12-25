@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Price } from '../../types';
+import { Price, Indicators } from '../../types';
 
 export const pricesApi = createApi({
   reducerPath: 'pricesApi',
@@ -54,6 +54,9 @@ export const pricesApi = createApi({
           : // an error occurred, but we still want to refetch this query when `{ type: 'Prices', id: 'LIST' }` is invalidated
             [{ type: 'Prices', id: 'LIST' }],
     }),
+    getIndicators: builder.query<Indicators, void>({
+      query: () => 'indicators',
+    }),
   }),
 });
 
@@ -61,4 +64,5 @@ export const {
   useGetPricesQuery,
   useGetTomorrowPricesQuery,
   useGetYesterdayPricesQuery,
+  useGetIndicatorsQuery,
 } = pricesApi;

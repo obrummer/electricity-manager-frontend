@@ -1,4 +1,3 @@
-import React from 'react';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,6 +8,7 @@ import Paper from '@mui/material/Paper';
 import Copyright from './Copyright';
 import SwitchContainer from '../containers/SwitchContainer';
 import PriceChartContainer from '../containers/PriceChartContainer';
+import IndicatorContainer from '../containers/IndicatorContainer';
 
 function Dashboard() {
   return (
@@ -41,6 +41,9 @@ function Dashboard() {
         <Toolbar />
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
           <Grid container spacing={3}>
+            <Grid item xs={12} md={12} lg={12}>
+              <IndicatorContainer />
+            </Grid>
             <Grid item xs={12} md={6} lg={6}>
               <Paper
                 sx={{
@@ -49,7 +52,13 @@ function Dashboard() {
                   flexDirection: 'column',
                 }}
               >
-                Electricity price
+                <Typography
+                  sx={{ fontSize: 14 }}
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  Electricity price
+                </Typography>
                 <PriceChartContainer />
               </Paper>
             </Grid>
@@ -61,7 +70,13 @@ function Dashboard() {
                   flexDirection: 'column',
                 }}
               >
-                Switches
+                <Typography
+                  sx={{ fontSize: 14 }}
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  Switches
+                </Typography>
                 <SwitchContainer />
               </Paper>
             </Grid>

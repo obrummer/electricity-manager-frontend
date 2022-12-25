@@ -28,7 +28,6 @@ const PriceChartContainer = () => {
     isLoading: isLoadingYesterday,
     isError: errorYesterday,
   } = useGetYesterdayPricesQuery();
-  console.log(showTax);
 
   const dataType = (alignment: string) => {
     if (alignment === 'today' && today) {
@@ -87,7 +86,9 @@ const PriceChartContainer = () => {
             paddingTop: 0.9,
           }}
         >
-          <Typography>Date: {dataType(alignment)[0].date} </Typography>
+          <Typography sx={{ fontSize: 14 }}>
+            Date: {dataType(alignment)[0].date}{' '}
+          </Typography>
         </Grid>
         <Grid item xs={4} md={4}>
           <FormGroup>
@@ -98,7 +99,7 @@ const PriceChartContainer = () => {
                   onChange={() => setShowTax(!showTax)}
                 />
               }
-              label="Price with tax"
+              label={<Typography sx={{ fontSize: 14 }}>Show tax</Typography>}
             />
           </FormGroup>
         </Grid>
@@ -110,7 +111,6 @@ const PriceChartContainer = () => {
             value={alignment}
             exclusive
             onChange={handleAlignment}
-            aria-label="text alignment"
             size="small"
           >
             <ToggleButton value="yesterday">- 1</ToggleButton>

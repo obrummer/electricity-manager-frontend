@@ -24,9 +24,15 @@ function SwitchTable({ data, stageEdit, stageDelete }: SwitchTableProps) {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">High limit</TableCell>
-            <TableCell align="right">Active</TableCell>
+            <TableCell sx={{ fontSize: 12, fontWeight: 'bold' }}>
+              Name
+            </TableCell>
+            <TableCell sx={{ fontSize: 12, fontWeight: 'bold' }} align="right">
+              High limit
+            </TableCell>
+            <TableCell sx={{ fontSize: 12, fontWeight: 'bold' }} align="right">
+              Active
+            </TableCell>
             <TableCell />
             <TableCell />
           </TableRow>
