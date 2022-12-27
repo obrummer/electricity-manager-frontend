@@ -29,10 +29,15 @@ function ConfirmationDialog({
       >
         <DialogTitle id="alert-dialog-title">{header ?? ''}</DialogTitle>
         <DialogActions>
-          <Button variant="outlined" onClick={handleClose}>
+          <Button id="alert-close" variant="outlined" onClick={handleClose}>
             {closeButtonText ?? ''}
           </Button>
-          <Button variant="outlined" onClick={onSubmit} autoFocus>
+          <Button
+            id="alert-confirm"
+            variant="outlined"
+            onClick={onSubmit}
+            autoFocus
+          >
             {submitButtonText ?? ''}
           </Button>
         </DialogActions>

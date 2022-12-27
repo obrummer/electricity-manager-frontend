@@ -58,6 +58,7 @@ function SwitchTable({ data, stageEdit, stageDelete }: SwitchTableProps) {
                 <Tooltip title="Edit" placement="top">
                   <IconButton
                     aria-label="edit"
+                    id="edit"
                     onClick={() => stageEdit(row._id)}
                   >
                     <EditIcon />
@@ -68,6 +69,7 @@ function SwitchTable({ data, stageEdit, stageDelete }: SwitchTableProps) {
                 <Tooltip title="Delete" placement="top">
                   <IconButton
                     aria-label="delete"
+                    id="delete"
                     onClick={() => stageDelete(row._id)}
                   >
                     <DeleteIcon />

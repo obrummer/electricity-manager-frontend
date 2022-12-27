@@ -51,16 +51,16 @@ function SwitchContainer() {
   // Handle success and error communication to user
   useEffect(() => {
     if (isSuccessCreateSwitch) {
-      toast.success('Success!');
+      toast.success('Switch created successfully!');
     }
     if (isErrorCreateSwitch) {
-      toast.error('Error, smomething went wrong.');
+      toast.error('Error, something went wrong.');
     }
   }, [isLoadingCreateSwitch]);
 
   useEffect(() => {
     if (isSuccessEditSwitch) {
-      toast.success('Success!');
+      toast.success('Switch edited successfully!');
     }
     if (isErrorEditSwitch) {
       toast.error('Error, smomething went wrong.');
@@ -69,7 +69,7 @@ function SwitchContainer() {
 
   useEffect(() => {
     if (isSuccessDeleteSwitch) {
-      toast.success('Success!');
+      toast.success('Switch deleted successfully!');
     }
     if (isErrorDeleteSwitch) {
       toast.error('Error, smomething went wrong.');

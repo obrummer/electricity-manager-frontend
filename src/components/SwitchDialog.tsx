@@ -43,6 +43,7 @@ function SwitchDialog({
             sx={{ m: 1 }}
             label="Name"
             name="switchName"
+            id="switchName"
             required
             value={switchName}
             onChange={(e: { target: { value: string } }) =>
@@ -53,6 +54,8 @@ function SwitchDialog({
             sx={{ m: 1, minWidth: 200 }}
             label="High Limit"
             type="number"
+            name="highLimit"
+            id="highLimit"
             value={highLimit}
             select
             onChange={(e) => setHighLimit(Number(e.target.value))}
@@ -71,6 +74,7 @@ function SwitchDialog({
           </Button>
           <Button
             variant="outlined"
+            id="create-switch"
             onClick={
               dialogMode === DialogMode.create ? createSwitch : editSwitch
             }
