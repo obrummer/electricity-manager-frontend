@@ -40,19 +40,30 @@ function DayPriceChart({
           <YAxis label={{ value: 'c/kWh', position: 'top' }} />
           <Tooltip />
           {today && (
-            <ReferenceLine x={getCurrentPriceAndTime().time} stroke="black">
+            <ReferenceLine
+              id="reference-line"
+              x={getCurrentPriceAndTime().time}
+              stroke="black"
+            >
               {/* <Label position={'top'}>
               Current price: {getCurrentPriceAndTime().price.toString()}
             </Label> */}
             </ReferenceLine>
           )}
-          <Line type="monotone" dataKey="price" stroke="#8884d8" dot={false} />
+          <Line
+            type="monotone"
+            dataKey="price"
+            stroke="#8884d8"
+            dot={false}
+            id="price-line"
+          />
           {showTax && (
             <Line
               type="monotone"
               dataKey="priceWithTax"
               stroke="#82ca9d"
               dot={false}
+              id="price-with-tax-line"
             />
           )}
         </LineChart>

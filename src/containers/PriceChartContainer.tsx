@@ -96,6 +96,7 @@ const PriceChartContainer = () => {
               control={
                 <Switch
                   checked={showTax}
+                  id="toggle-tax"
                   onChange={() => setShowTax(!showTax)}
                 />
               }
@@ -113,9 +114,17 @@ const PriceChartContainer = () => {
             onChange={handleAlignment}
             size="small"
           >
-            <ToggleButton value="yesterday">- 1</ToggleButton>
-            <ToggleButton value="today">Today</ToggleButton>
-            <ToggleButton value="tomorrow" disabled={tomorrow.length <= 1}>
+            <ToggleButton id="toggle-reduce-day" value="yesterday">
+              - 1
+            </ToggleButton>
+            <ToggleButton id="toggle-today" value="today">
+              Today
+            </ToggleButton>
+            <ToggleButton
+              id="toggle-add-day"
+              value="tomorrow"
+              disabled={tomorrow.length <= 1}
+            >
               + 1
             </ToggleButton>
           </ToggleButtonGroup>
