@@ -96,7 +96,8 @@ function SwitchContainer() {
     setDialogMode(DialogMode.create);
   };
 
-  const handleCreateSwitch = () => {
+  const handleCreateSwitch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     createSwitch({ name: switchName, highLimit: highLimit, isActive: true });
     setSwitchName('');
     setHighLImit(50);
@@ -119,7 +120,8 @@ function SwitchContainer() {
     setDialogMode(DialogMode.edit);
   };
 
-  const handleEditSwitch = () => {
+  const handleEditSwitch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const data = {
       _id: activeId,
       ...{ name: switchName, highLimit: highLimit, isActive: true },
@@ -137,6 +139,23 @@ function SwitchContainer() {
   const handleDeleteSwitch = () => {
     deleteSwitch(activeId);
     setOpenConfirmation(false);
+  };
+
+  // Check if switch name is unique
+  const isSwitchNameUnique = (switchNameToCompare: string) => {
+    if (data) {
+      const filteredData = data.filter((item) => {
+        return item._id !== activeId;
+      });
+      const switchNameExists = filteredData.find((item) => {
+        return item.name === switchNameToCompare;
+      });
+
+      if (switchNameExists) {
+        return true;
+      }
+    }
+    return false;
   };
 
   const renderTable = () => {
@@ -185,6 +204,7 @@ function SwitchContainer() {
         createSwitch={handleCreateSwitch}
         dialogMode={dialogMode}
         editSwitch={handleEditSwitch}
+        nameValidator={isSwitchNameUnique}
       />
       {renderTable()}
     </>

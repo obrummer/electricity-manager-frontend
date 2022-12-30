@@ -10,6 +10,7 @@ import {
   // Label,
 } from 'recharts';
 import { Price } from '../types';
+import { useTheme } from '@mui/material/styles';
 
 interface DayPriceChartProps {
   data: Price[];
@@ -23,6 +24,7 @@ function DayPriceChart({
   getCurrentPriceAndTime,
   today,
 }: DayPriceChartProps) {
+  const theme = useTheme();
   return (
     <div style={{ width: '100%', height: 300 }}>
       <ResponsiveContainer>
@@ -53,7 +55,7 @@ function DayPriceChart({
           <Line
             type="monotone"
             dataKey="price"
-            stroke="#8884d8"
+            stroke={theme.palette.secondary.dark}
             dot={false}
             id="price-line"
           />
@@ -61,7 +63,7 @@ function DayPriceChart({
             <Line
               type="monotone"
               dataKey="priceWithTax"
-              stroke="#82ca9d"
+              stroke={theme.palette.primary.dark}
               dot={false}
               id="price-with-tax-line"
             />

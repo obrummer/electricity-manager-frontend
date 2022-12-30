@@ -7,8 +7,9 @@ const switchName = 'test-switch';
 const setSwitchName = jest.fn();
 const highLimit = 50;
 const setHighLimit = jest.fn();
-const createSwitch = jest.fn();
-const editSwitch = jest.fn();
+const createSwitch = jest.fn().mockImplementation((e) => e.preventDefault());
+const editSwitch = jest.fn().mockImplementation((e) => e.preventDefault());
+const nameValidator = jest.fn();
 
 describe('SwitchDialog component', () => {
   it('should render component correctly', () => {
@@ -23,6 +24,7 @@ describe('SwitchDialog component', () => {
         setHighLimit={setHighLimit}
         createSwitch={createSwitch}
         editSwitch={editSwitch}
+        nameValidator={nameValidator}
       />,
     );
     expect(screen.getByTestId('switch-dialog')).toBeInTheDocument();
@@ -39,6 +41,7 @@ describe('SwitchDialog component', () => {
         setHighLimit={setHighLimit}
         createSwitch={createSwitch}
         editSwitch={editSwitch}
+        nameValidator={nameValidator}
       />,
     );
     expect(screen.getByText(/Create switch/)).toBeInTheDocument();
@@ -55,9 +58,10 @@ describe('SwitchDialog component', () => {
         setHighLimit={setHighLimit}
         createSwitch={createSwitch}
         editSwitch={editSwitch}
+        nameValidator={nameValidator}
       />,
     );
-    fireEvent.click(
+    fireEvent.submit(
       screen.getByRole('button', {
         name: /create/i,
       }),
@@ -77,6 +81,7 @@ describe('SwitchDialog component', () => {
         setHighLimit={setHighLimit}
         createSwitch={createSwitch}
         editSwitch={editSwitch}
+        nameValidator={nameValidator}
       />,
     );
     expect(screen.getByText(/Create switch/)).toBeInTheDocument();
@@ -93,9 +98,10 @@ describe('SwitchDialog component', () => {
         setHighLimit={setHighLimit}
         createSwitch={createSwitch}
         editSwitch={editSwitch}
+        nameValidator={nameValidator}
       />,
     );
-    fireEvent.click(
+    fireEvent.submit(
       screen.getByRole('button', {
         name: /edit/i,
       }),
@@ -115,6 +121,7 @@ describe('SwitchDialog component', () => {
         setHighLimit={setHighLimit}
         createSwitch={createSwitch}
         editSwitch={editSwitch}
+        nameValidator={nameValidator}
       />,
     );
     fireEvent.click(
@@ -138,6 +145,7 @@ describe('SwitchDialog component', () => {
         setHighLimit={setHighLimit}
         createSwitch={createSwitch}
         editSwitch={editSwitch}
+        nameValidator={nameValidator}
       />,
     );
     expect(screen.getByRole('textbox', { name: 'Name' })).toHaveValue(
