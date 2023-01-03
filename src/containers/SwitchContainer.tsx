@@ -12,6 +12,7 @@ import ConfirmationDialog from '../components/ConfirmationDialog';
 import SwitchTable from '../components/SwitchTable';
 import { DialogMode } from '../types';
 import { toast } from 'react-toastify';
+import ContainerLoader from '../components/ContainerLoader';
 
 function SwitchContainer() {
   const [open, setOpen] = useState(false);
@@ -160,7 +161,7 @@ function SwitchContainer() {
 
   const renderTable = () => {
     if (isLoading) {
-      return <div>Loading...</div>;
+      return <ContainerLoader />;
     }
 
     if (isError || !data) {

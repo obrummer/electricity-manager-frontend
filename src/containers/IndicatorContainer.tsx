@@ -1,16 +1,39 @@
 import Grid from '@mui/material/Grid';
 import { useGetIndicatorsQuery } from '../features/prices/pricesAPI';
 import IndicatorCard from '../components/IndicatorCard';
+import ContainerLoader from '../components/ContainerLoader';
+import Paper from '@mui/material/Paper';
+
+interface WrapperProps {
+  children: React.ReactNode;
+}
+
+const Wrapper = ({ children }: WrapperProps) => (
+  <Paper sx={{ padding: 2 }}>
+    Indicators
+    {children}
+  </Paper>
+);
 
 function IndicatorContainer() {
   const { data, isLoading, isError } = useGetIndicatorsQuery();
+
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Wrapper>
+        <ContainerLoader amount={1} />
+      </Wrapper>
+    );
   }
 
   if (isError || !data) {
-    return <div>Something went wrong</div>;
+    return (
+      <Wrapper>
+        <div>Something went Wrong</div>
+      </Wrapper>
+    );
   }
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={6} md={3} lg={3}>

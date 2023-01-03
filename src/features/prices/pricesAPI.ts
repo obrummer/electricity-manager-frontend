@@ -4,7 +4,7 @@ import { Price, Indicators } from '../../types';
 export const pricesApi = createApi({
   reducerPath: 'pricesApi',
   tagTypes: ['Prices'],
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/api/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: '/api/' }),
   endpoints: (builder) => ({
     getPrices: builder.query<Price[], void>({
       query: () => 'electricityprice',

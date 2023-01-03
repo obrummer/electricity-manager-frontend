@@ -5,7 +5,7 @@ import { SwitchPoint } from '../../types';
 export const switchesApi = createApi({
   reducerPath: 'switchesApi',
   tagTypes: ['Switches'],
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/api/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: '/api/' }),
   endpoints: (builder) => ({
     getSwitches: builder.query<SwitchPoint[], void>({
       query: () => 'switches',

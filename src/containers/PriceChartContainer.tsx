@@ -13,6 +13,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
 import dayjs from 'dayjs';
+import ContainerLoader from '../components/ContainerLoader';
 
 const PriceChartContainer = () => {
   const [alignment, setAlignment] = useState<string>('today');
@@ -62,7 +63,7 @@ const PriceChartContainer = () => {
   };
 
   if (isLoading || isLoadingTomorrow || isLoadingYesterday) {
-    return <div>Loading...</div>;
+    return <ContainerLoader />;
   }
 
   if (
@@ -75,6 +76,7 @@ const PriceChartContainer = () => {
   ) {
     return <div>Something went wrong</div>;
   }
+
   return (
     <>
       <Grid container>
