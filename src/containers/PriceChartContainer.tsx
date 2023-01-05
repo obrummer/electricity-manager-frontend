@@ -14,6 +14,12 @@ import Grid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import ContainerLoader from '../components/ContainerLoader';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+import { currentUser } from '../utils/userConfig';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const PriceChartContainer = () => {
   const [alignment, setAlignment] = useState<string>('today');
@@ -44,22 +50,27 @@ const PriceChartContainer = () => {
   };
 
   const getCurrentPriceAndTime = () => {
-    const getCurrentHour = dayjs().hour();
+    let currentHour = dayjs().tz(currentUser.timeZone).hour().toString();
+    if (currentHour.length === 1) {
+      currentHour = `0${currentHour}`;
+    }
     const currentItem = () => {
       if (today) {
-        return today.find(
-          (item) => item.time === `${getCurrentHour.toString()}:00`,
-        );
+        return today.find((item) => item.time === `${currentHour}:00`);
       }
     };
     return currentItem() || { price: 0, time: '', date: '', priceWithTax: 0 };
   };
 
+  const getFormattedDate = (date?: dayjs.Dayjs) => dayjs(date).format('MMM D');
+
   const handleAlignment = (
     event: React.MouseEvent<HTMLElement>,
     newAlignment: string,
   ) => {
-    setAlignment(newAlignment);
+    if (newAlignment !== null) {
+      setAlignment(newAlignment);
+    }
   };
 
   if (isLoading || isLoadingTomorrow || isLoadingYesterday) {
@@ -92,7 +103,7 @@ const PriceChartContainer = () => {
             Date: {dataType(alignment)[0].date}{' '}
           </Typography>
         </Grid>
-        <Grid item xs={4} md={4}>
+        <Grid item xs={6} md={4}>
           <FormGroup>
             <FormControlLabel
               control={
@@ -106,7 +117,7 @@ const PriceChartContainer = () => {
             />
           </FormGroup>
         </Grid>
-        <Grid item xs={4} md={4}>
+        <Grid item xs={6} md={4}>
           <ToggleButtonGroup
             sx={{
               float: 'right',
@@ -117,7 +128,7 @@ const PriceChartContainer = () => {
             size="small"
           >
             <ToggleButton id="toggle-reduce-day" value="yesterday">
-              - 1
+              {getFormattedDate(dayjs().subtract(1, 'day'))}
             </ToggleButton>
             <ToggleButton id="toggle-today" value="today">
               Today
@@ -127,7 +138,7 @@ const PriceChartContainer = () => {
               value="tomorrow"
               disabled={tomorrow.length <= 1}
             >
-              + 1
+              {getFormattedDate(dayjs().add(1, 'day'))}
             </ToggleButton>
           </ToggleButtonGroup>
         </Grid>
